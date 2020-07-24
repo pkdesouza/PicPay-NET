@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PicPay
 {
-    public class PaymentControllers
+    public class PaymentService
     {
+        public PicPayClient PicPayClient { get => new PicPayClient(); }
         public async Task<PaymentResponse> Create(PaymentRequest body)
         {
             string json = JsonConvert.SerializeObject(body);

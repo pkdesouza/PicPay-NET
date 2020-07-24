@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PicPay.Models.Response;
 using System.Collections.Generic;
 using System.Net;
 
@@ -16,6 +17,8 @@ namespace PicPay.Models
         public List<Error> Errors { get; set; }
         [JsonProperty("status", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Status { get; set; }
+        [JsonProperty("qrcode", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public QrCode QrCode { get; set; }
         [JsonIgnore]
         public int StatusCode { get; set; }
     }

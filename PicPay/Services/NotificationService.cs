@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace PicPay
 {
-    public class NotificationControllers
+    public class NotificationService
     {
-        public async Task<NotificationResponse> Create(NotificationRequest body, string seller_token, string url)
+        public PicPayClient PicPayClient { get => new PicPayClient(); }
+        public string Token { get => "SEU TOKEN AQUI"; }
+        public async Task<NotificationResponse> Create(NotificationRequest body, string url)
         {
             PicPayClient.HttpClient.DefaultRequestHeaders.Remove("x-picpay-token");
-            PicPayClient.HttpClient.DefaultRequestHeaders.Add("x-seller-token", seller_token);
+            PicPayClient.HttpClient.DefaultRequestHeaders.Add("x-seller-token", Token);
             string json = JsonConvert.SerializeObject(body);
             StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await PicPayClient.HttpClient.PostAsync(url, stringContent);
